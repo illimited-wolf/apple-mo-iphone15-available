@@ -17,7 +17,6 @@
     <div id="time"></div>
     <div id="next-refresh"></div>
     <div id="countdown"></div>
-    <div id="double-countdown"></div>
     <div id="availability"></div>
 
     <script>
@@ -76,14 +75,14 @@
 
         function updateTime() {
             var now = new Date();
-            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
             $('#time').html('<p>Current Time: ' + time + '</p>');
         }
 
         function updateNextRefresh() {
             var now = new Date();
             now.setMilliseconds(now.getMilliseconds() + refreshInterval);
-            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() ;
             $('#next-refresh').html('<p>Next Refresh: ' + time + '</p>');
         }
 
@@ -93,14 +92,6 @@
                 countdown = refreshInterval;
             }
             $('#countdown').html('<p>Refresh Countdown: ' + countdown + 'ms</p>');
-        }
-
-        function updateDoubleCountdown() {
-            doubleCountdown -= 100;
-            if (doubleCountdown < 0) {
-                doubleCountdown = refreshInterval * 2;
-            }
-            $('#double-countdown').html('<p>Double Refresh Countdown: ' + doubleCountdown + 'ms</p>');
         }
 
         setInterval(function() {
