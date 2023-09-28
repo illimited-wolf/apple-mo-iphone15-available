@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>iPhone Availability</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .blue { color: blue; }
+        .black { color: black; }
+        .white { color: orange; }
+        .gray { color: gray; }
+        .highlight { background-color: yellow; }
+        /* ... 其他顏色的CSS規則 ... */
+    </style>
+</head>
+<body>
+    <h1>iPhone Availability</h1>
+    <div id="time"></div>
+    <div id="next-refresh"></div>
+    <div id="countdown"></div>
+    <div id="double-countdown"></div>
+    <div id="availability"></div>
+
+    <script>
+        var refreshInterval = 500; // 0.5 seconds
+        var countdown = refreshInterval;
+        var doubleCountdown = refreshInterval * 2;
+
+        var modelNames = {
+            "MU2R3ZA/A": { name: "iPhone 15 Pro Max 256GB 藍色鈦金屬", color: "blue" },
+            "MU2X3ZA/A": { name: "iPhone 15 Pro Max 1TB 黑色鈦金屬", color: "black" },
+            "MTQL3ZA/A": { name: "iPhone 15 Pro 1TB 藍色鈦金屬", color: "blue" },
+            "MU2U3ZA/A": { name: "iPhone 15 Pro Max 512GB 白色鈦金屬", color: "white" },
+            "MTQF3ZA/A": { name: "iPhone 15 Pro 512GB 原色鈦金屬", color: "gray" },
+            "MTQ73ZA/A": { name: "iPhone 15 Pro 128GB 藍色鈦金屬", color: "blue" },
+            "MTQE3ZA/A": { name: "iPhone 15 Pro 512GB 白色鈦金屬", color: "white" },
+            "MU2Q3ZA/A": { name: "iPhone 15 Pro Max 256GB 原色鈦金屬", color: "gray" },
+            "MU2V3ZA/A": { name: "iPhone 15 Pro Max 512GB 原色鈦金屬", color: "gray" },
+            "MU2T3ZA/A": { name: "iPhone 15 Pro Max 512GB 黑色鈦金屬", color: "black" },
+            "MU2Y3ZA/A": { name: "iPhone 15 Pro Max 1TB 白色鈦金屬", color: "white" },
+            "MTQG3ZA/A": { name: "iPhone 15 Pro 512GB 藍色鈦金屬", color: "blue" },
+            "MTQ53ZA/A": { name: "iPhone 15 Pro 128GB 白色鈦金屬", color: "white" },
+            "MU603ZA/A": { name: "iPhone 15 Pro Max 1TB 原色鈦金屬", color: "gray" },
+            "MTQ83ZA/A": { name: "iPhone 15 Pro 256GB 黑色鈦金屬", color: "black" },
+            "MTQA3ZA/A": { name: "iPhone 15 Pro 256GB 原色鈦金屬", color: "gray" },
+            "MTQD3ZA/A": { name: "iPhone 15 Pro 512GB 黑色鈦金屬", color: "black" },
+            "MTQJ3ZA/A": { name: "iPhone 15 Pro 1TB 白色鈦金屬", color: "white" },
+            "MU2W3ZA/A": { name: "iPhone 15 Pro Max 512GB 藍色鈦金屬", color: "blue" },
+            "MU2N3ZA/A": { name: "iPhone 15 Pro Max 256GB 黑色鈦金屬", color: "black" },
+            "MTQH3ZA/A": { name: "iPhone 15 Pro 1TB 黑色鈦金屬", color: "black" },
+            "MTQK3ZA/A": { name: "iPhone 15 Pro 1TB 原色鈦金屬", color: "gray" },
+            "MU613ZA/A": { name: "iPhone 15 Pro Max 1TB 藍色鈦金屬", color: "blue" },
+            "MTQ43ZA/A": { name: "iPhone 15 Pro 128GB 黑色鈦金屬", color: "black" },
+            "MTQ63ZA/A": { name: "iPhone 15 Pro 128GB 原色鈦金屬", color: "gray" },
+            "MTQC3ZA/A": { name: "iPhone 15 Pro 256GB 藍色鈦金屬", color: "blue" },
+            "MTQ93ZA/A": { name: "iPhone 15 Pro 256GB 白色鈦金屬", color: "white" },
+            "MU2P3ZA/A": { name: "iPhone 15 Pro Max 256GB 白色鈦金屬", color: "white" },
+            // ... 其他型號及名稱對應關係
+        };
+
+        function fetchAvailability() {
+            $.getJSON('https://reserve-prime.apple.com/MO/zh_MO/reserve/A/availability.json', function(data) {
+                var availability = '';
+                $.each(data.stores, function(store, models) {
+                    $.each(models, function(model, details) {
+                        if (model in modelNames) {
+                            var unlocked = details.availability.unlocked ? '<span class="highlight">true</span>' : 'false';
+                            availability += '<p class="' + modelNames[model].color + '">' + modelNames[model].name + ' (' + model + '): ' +
+                                'Contract: ' + details.availability.contract +
+                                ', Unlocked: ' + unlocked + '</p>';
+                        }
+                    });
+                });
+                $('#availability').html(availability);
+            });
+        }
+
+        function updateTime() {
+            var now = new Date();
+            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+            $('#time').html('<p>Current Time: ' + time + '</p>');
+        }
+
+        function updateNextRefresh() {
+            var now = new Date();
+            now.setMilliseconds(now.getMilliseconds() + refreshInterval);
+            var time = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds() + ":" + now.getMilliseconds();
+            $('#next-refresh').html('<p>Next Refresh: ' + time + '</p>');
+        }
+
+        function updateCountdown() {
+            countdown -= 100;
+            if (countdown < 0) {
+                countdown = refreshInterval;
+            }
+            $('#countdown').html('<p>Refresh Countdown: ' + countdown + 'ms</p>');
+        }
+
+        function updateDoubleCountdown() {
+            doubleCountdown -= 100;
+            if (doubleCountdown < 0) {
+                doubleCountdown = refreshInterval * 2;
+            }
+            $('#double-countdown').html('<p>Double Refresh Countdown: ' + doubleCountdown + 'ms</p>');
+        }
+
+        setInterval(function() {
+            fetchAvailability();
+            updateTime();
+            updateNextRefresh();
+            updateCountdown();
+            updateDoubleCountdown();
+        }, 100); // 更新頻率為每100毫秒
+    </script>
+</body>
+</html>
