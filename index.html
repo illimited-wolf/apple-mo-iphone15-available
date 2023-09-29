@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <script async src="https://analytics.eu.umami.is/script.js" data-website-id="ab086651-3426-4822-8389-e74f5d6069da"></script>
+    <script src="https://unpkg.com/highlight.run"></script>
     <style>
         .blue { color: blue; }
         .black { color: black; }
@@ -102,6 +102,20 @@
                     });
                 }
             });
+            H.init('kgr554ne', { // Get your project ID from https://app.highlight.io/setup
+            environment: 'production',
+            version: 'commit:abcdefg12345',
+            networkRecording: {
+                enabled: true,
+                recordHeadersAndBody: true,
+                urlBlocklist: [
+					// insert full or partial urls that you don't want to record here
+					// Out of the box, Highlight will not record these URLs (they can be safely removed):
+					"https://www.googleapis.com/identitytoolkit",
+					"https://securetoken.googleapis.com",
+                ],
+            },
+        });
         }
 
         function updateTime() {
