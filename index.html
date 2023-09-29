@@ -3,6 +3,8 @@
 <head>
     <title>Apple MO iPhone Reserve Availabilit</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <style>
         .blue { color: blue; }
         .black { color: black; }
@@ -13,10 +15,13 @@
 </head>
 <body>
     <h1>Apple MO iPhone Reserve Availabilit</h1>
+    <ul>
+        <li><a href="./lite.html">lite 版本</a></li>
+    </ul>
     <div id="time"></div>
     <div id="next-refresh"></div>
     <div id="countdown"></div>
-    <table id="availability">
+    <table id="availability" class="display">
         <thead>
             <tr>
                 <th>Model</th>
@@ -33,6 +38,7 @@
     <script>
         var refreshInterval = 500; // 0.5 seconds
         var countdown = refreshInterval;
+        var table;
 
         var modelNames = {
             "MU2R3ZA/A": {name: "iPhone 15 Pro Max 256GB 藍色鈦金屬", color: "blue", capacity:"256GB"},
@@ -67,20 +73,33 @@
 
         function fetchAvailability() {
             $.getJSON('https://reserve-prime.apple.com/MO/zh_MO/reserve/A/availability.json', function(data) {
-                var availability = '';
+                var availability = [];
                 $.each(data.stores, function(store, models) {
                     $.each(models, function(model, details) {
                         if (model in modelNames) {
                             var unlocked = details.availability.unlocked ? 'highlight' : '';
-                            availability += '<tr class="' + unlocked + '"><td class="' + modelNames[model].color + '">' + modelNames[model].name + '</td><td class="' +
-                                modelNames[model].color + '">' + modelNames[model].color + '</td><td class="' +
-                                modelNames[model].color + '">' + modelNames[model].capacity + '</td><td class="' +
-                                modelNames[model].color + '">' + details.availability.contract + '</td><td class="' +
-                                modelNames[model].color + '">' + (details.availability.unlocked ? 'Yes' : 'No') + '</td></tr>';
+                            availability.push([
+                                '<span class="' + modelNames[model].color + '">' + modelNames[model].name + '</span>',
+                                '<span class="' + modelNames[model].color + '">' + modelNames[model].color + '</span>',
+                                '<span class="' + modelNames[model].color + '">' + modelNames[model].capacity + '</span>',
+                                '<span class="' + modelNames[model].color + '">' + details.availability.contract + '</span>',
+                                '<span class="' + modelNames[model].color + '">' + (details.availability.unlocked ? 'Yes' : 'No') + '</span>'
+                            ]);
                         }
                     });
                 });
-                $('#availability tbody').html(availability);
+                if ($.fn.dataTable.isDataTable('#availability')) {
+                    table.clear();
+                    table.rows.add(availability);
+                    table.draw();
+                } else {
+                    table = $('#availability').DataTable({
+                        data: availability,
+                        stateSave: true,
+                        pageLength: -1,
+                        autoWidth: false
+                    });
+                }
             });
         }
 
