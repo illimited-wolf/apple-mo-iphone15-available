@@ -42,34 +42,34 @@
         var table;
 
         var modelNames = {
-            "MU2R3ZA/A": {name: "iPhone 15 Pro Max 256GB 藍色鈦金屬", color: "blue", capacity:"256GB"},
-            "MU2X3ZA/A": {name: "iPhone 15 Pro Max 1TB 黑色鈦金屬", color: "black", capacity:"1TB"},
-            "MTQL3ZA/A": {name: "iPhone 15 Pro 1TB 藍色鈦金屬", color: "blue", capacity:"1TB"},
-            "MU2U3ZA/A": {name: "iPhone 15 Pro Max 512GB 白色鈦金屬", color: "white", capacity:"512GB"},
-            "MTQF3ZA/A": {name: "iPhone 15 Pro 512GB 原色鈦金屬", color: "gray", capacity:"512GB"},
-            "MTQ73ZA/A": {name: "iPhone 15 Pro 128GB 藍色鈦金屬", color: "blue", capacity:"128GB"},
-            "MTQE3ZA/A": {name: "iPhone 15 Pro 512GB 白色鈦金屬", color: "white", capacity:"512GB"},
-            "MU2Q3ZA/A": {name: "iPhone 15 Pro Max 256GB 原色鈦金屬", color: "gray", capacity:"256GB"},
-            "MU2V3ZA/A": {name: "iPhone 15 Pro Max 512GB 原色鈦金屬", color: "gray", capacity:"512GB"},
-            "MU2T3ZA/A": {name: "iPhone 15 Pro Max 512GB 黑色鈦金屬", color: "black", capacity:"512GB"},
-            "MU2Y3ZA/A": {name: "iPhone 15 Pro Max 1TB 白色鈦金屬", color: "white", capacity:"1TB"},
-            "MTQG3ZA/A": {name: "iPhone 15 Pro 512GB 藍色鈦金屬", color: "blue", capacity:"512GB"},
-            "MTQ53ZA/A": {name: "iPhone 15 Pro 128GB 白色鈦金屬", color: "white", capacity:"128GB"},
-            "MU603ZA/A": {name: "iPhone 15 Pro Max 1TB 原色鈦金屬", color: "gray", capacity:"1TB"},
-            "MTQ83ZA/A": {name: "iPhone 15 Pro 256GB 黑色鈦金屬", color: "black", capacity:"256GB"},
-            "MTQA3ZA/A": {name: "iPhone 15 Pro 256GB 原色鈦金屬", color: "gray", capacity:"256GB"},
-            "MTQD3ZA/A": {name: "iPhone 15 Pro 512GB 黑色鈦金屬", color: "black", capacity:"512GB"},
-            "MTQJ3ZA/A": {name: "iPhone 15 Pro 1TB 白色鈦金屬", color: "white", capacity:"1TB"},
-            "MU2W3ZA/A": {name: "iPhone 15 Pro Max 512GB 藍色鈦金屬", color: "blue", capacity:"512GB"},
-            "MU2N3ZA/A": {name: "iPhone 15 Pro Max 256GB 黑色鈦金屬", color: "black", capacity:"256GB"},
-            "MTQH3ZA/A": {name: "iPhone 15 Pro 1TB 黑色鈦金屬", color: "black", capacity:"1TB"},
-            "MTQK3ZA/A": {name: "iPhone 15 Pro 1TB 原色鈦金屬", color: "gray", capacity:"1TB"},
-            "MU613ZA/A": {name: "iPhone 15 Pro Max 1TB 藍色鈦金屬", color: "blue", capacity:"1TB"},
-            "MTQ43ZA/A": {name: "iPhone 15 Pro 128GB 黑色鈦金屬", color: "black", capacity:"128GB"},
-            "MTQ63ZA/A": {name: "iPhone 15 Pro 128GB 原色鈦金屬", color: "gray", capacity:"128GB"},
-            "MTQC3ZA/A": {name: "iPhone 15 Pro 256GB 藍色鈦金屬", color: "blue", capacity:"256GB"},
-            "MTQ93ZA/A": {name: "iPhone 15 Pro 256GB 白色鈦金屬", color: "white", capacity:"256GB"},
-            "MU2P3ZA/A": {name: "iPhone 15 Pro Max 256GB 白色鈦金屬", color: "white", capacity:"256GB"}
+            "MU2R3ZA/A": {name: "iPhone 15 Pro Max 256GB 藍色鈦金屬", color: "blue", capacity:"256GB"},
+            "MU2X3ZA/A": {name: "iPhone 15 Pro Max 1TB 黑色鈦金屬", color: "black", capacity:"1TB"},
+            "MTQL3ZA/A": {name: "iPhone 15 Pro 1TB 藍色鈦金屬", color: "blue", capacity:"1TB"},
+            "MU2U3ZA/A": {name: "iPhone 15 Pro Max 512GB 白色鈦金屬", color: "white", capacity:"512GB"},
+            "MTQF3ZA/A": {name: "iPhone 15 Pro 512GB 原色鈦金屬", color: "gray", capacity:"512GB"},
+            "MTQ73ZA/A": {name: "iPhone 15 Pro 128GB 藍色鈦金屬", color: "blue", capacity:"128GB"},
+            "MTQE3ZA/A": {name: "iPhone 15 Pro 512GB 白色鈦金屬", color: "white", capacity:"512GB"},
+            "MU2Q3ZA/A": {name: "iPhone 15 Pro Max 256GB 原色鈦金屬", color: "gray", capacity:"256GB"},
+            "MU2V3ZA/A": {name: "iPhone 15 Pro Max 512GB 原色鈦金屬", color: "gray", capacity:"512GB"},
+            "MU2T3ZA/A": {name: "iPhone 15 Pro Max 512GB 黑色鈦金屬", color: "black", capacity:"512GB"},
+            "MU2Y3ZA/A": {name: "iPhone 15 Pro Max 1TB 白色鈦金屬", color: "white", capacity:"1TB"},
+            "MTQG3ZA/A": {name: "iPhone 15 Pro 512GB 藍色鈦金屬", color: "blue", capacity:"512GB"},
+            "MTQ53ZA/A": {name: "iPhone 15 Pro 128GB 白色鈦金屬", color: "white", capacity:"128GB"},
+            "MU603ZA/A": {name: "iPhone 15 Pro Max 1TB 原色鈦金屬", color: "gray", capacity:"1TB"},
+            "MTQ83ZA/A": {name: "iPhone 15 Pro 256GB 黑色鈦金屬", color: "black", capacity:"256GB"},
+            "MTQA3ZA/A": {name: "iPhone 15 Pro 256GB 原色鈦金屬", color: "gray", capacity:"256GB"},
+            "MTQD3ZA/A": {name: "iPhone 15 Pro 512GB 黑色鈦金屬", color: "black", capacity:"512GB"},
+            "MTQJ3ZA/A": {name: "iPhone 15 Pro 1TB 白色鈦金屬", color: "white", capacity:"1TB"},
+            "MU2W3ZA/A": {name: "iPhone 15 Pro Max 512GB 藍色鈦金屬", color: "blue", capacity:"512GB"},
+            "MU2N3ZA/A": {name: "iPhone 15 Pro Max 256GB 黑色鈦金屬", color: "black", capacity:"256GB"},
+            "MTQH3ZA/A": {name: "iPhone 15 Pro 1TB 黑色鈦金屬", color: "black", capacity:"1TB"},
+            "MTQK3ZA/A": {name: "iPhone 15 Pro 1TB 原色鈦金屬", color: "gray", capacity:"1TB"},
+            "MU613ZA/A": {name: "iPhone 15 Pro Max 1TB 藍色鈦金屬", color: "blue", capacity:"1TB"},
+            "MTQ43ZA/A": {name: "iPhone 15 Pro 128GB 黑色鈦金屬", color: "black", capacity:"128GB"},
+            "MTQ63ZA/A": {name: "iPhone 15 Pro 128GB 原色鈦金屬", color: "gray", capacity:"128GB"},
+            "MTQC3ZA/A": {name: "iPhone 15 Pro 256GB 藍色鈦金屬", color: "blue", capacity:"256GB"},
+            "MTQ93ZA/A": {name: "iPhone 15 Pro 256GB 白色鈦金屬", color: "white", capacity:"256GB"},
+            "MU2P3ZA/A": {name: "iPhone 15 Pro Max 256GB 白色鈦金屬", color: "white", capacity:"256GB"}
         };
 
         function fetchAvailability() {
@@ -79,12 +79,13 @@
                     $.each(models, function(model, details) {
                         if (model in modelNames) {
                             var unlocked = details.availability.unlocked ? 'highlight' : '';
+                            var rowClass = details.availability.unlocked ? 'highlight' : '';
                             availability.push([
-                                '<span class="' + modelNames[model].color + '">' + modelNames[model].name + '</span>',
-                                '<span class="' + modelNames[model].color + '">' + modelNames[model].color + '</span>',
-                                '<span class="' + modelNames[model].color + '">' + modelNames[model].capacity + '</span>',
-                                '<span class="' + modelNames[model].color + '">' + details.availability.contract + '</span>',
-                                '<span class="' + modelNames[model].color + '">' + (details.availability.unlocked ? 'Yes' : 'No') + '</span>'
+                                '<span class="' + modelNames[model].color + ' ' + rowClass + '">' + modelNames[model].name + '</span>',
+                                '<span class="' + modelNames[model].color + ' ' + rowClass + '">' + modelNames[model].color + '</span>',
+                                '<span class="' + modelNames[model].color + ' ' + rowClass + '">' + modelNames[model].capacity + '</span>',
+                                '<span class="' + modelNames[model].color + ' ' + rowClass + '">' + details.availability.contract + '</span>',
+                                '<span class="' + modelNames[model].color + ' ' + rowClass + '">' + (details.availability.unlocked ? 'Yes' : 'No') + '</span>'
                             ]);
                         }
                     });
